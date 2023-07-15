@@ -22,7 +22,9 @@
 
   <div id="app">
     <button @click="isShow = !isShow">Vue表示/非表示</button>
-    <transition name="fade"><div v-show="isShow">表示されている</div></transition>
+    <transition name="fade">
+      <div v-show="isShow">表示されている</div>
+    </transition>
   </div>
 </body>
 
