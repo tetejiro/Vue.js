@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link rel="stylesheet" href="app.css" type="text/css">
+  <style>
+    .target {
+      transition: opacity 1s;
+    }
+    .target.is-hidden {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="is-show">JS表示/非表示</button>
+  <div id="target" class="target">JS表示されている</div>
+
+  <div id="app">
+    <button @click="isShow = !isShow">Vue表示/非表示</button>
+    <transition name="fade"><div v-show="isShow">表示されている</div></transition>
+  </div>
+</body>
+
+<script>
+  let isShow = document.getElementById('is-show');
+  let target = document.getElementById('target');
+
+  isShow.addEventListener('click', () => {
+    target.classList.toggle('is-hidden');
+  });
+
+  let { createApp } = Vue;
+
+  createApp ({
+    data() {
+      return {
+        isShow: false
+      }
+    }
+  }).mount('#app');
+</script>
+</html>
