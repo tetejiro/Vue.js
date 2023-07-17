@@ -1,0 +1,77 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://kit.fontawesome.com/57cee17187.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+  <div id="app">
+    <section class="carousel">
+
+      <div class="carousel__main">
+        <transition name="active">
+          <div class="carousel__main"
+                :key="images[active].id"
+                v-if="active === images[active].id">
+            <img :src="images[active].img">
+          </div>
+        </transition>
+      </div>
+      <div @click="prev" class="carousel__prev"><i class="fas fa-angle-left fa-5x"></i></div>
+      <div @click="next" class="carousel__next"><i class="fas fa-angle-right fa-5x"></i></div>
+      <ul class="carousel__thumbnails">
+        <li v-for="(image, id) in images"
+            :key="image.id"
+            :class="{current: active === image.id}"
+            @click="current(image.id)">
+          <img :src="image.img">
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    let { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          active: 0,
+          images: [
+            {id: 0, img: 'images/image001.jpg'},
+            {id: 1, img: 'images/image002.jpg'},
+            {id: 2, img: 'images/image003.jpg'},
+            {id: 3, img: 'images/image004.jpg'},
+            {id: 4, img: 'images/image005.jpg'},
+            {id: 5, img: 'images/image006.jpg'},
+            {id: 6, img: 'images/image007.jpg'}
+          ]
+        }
+      },
+      methods: {
+        current(id) {
+          this.active = id;
+        },
+        prev(){
+          if(this.active > 0) {
+            this.active --;
+          } else {
+            this.active = 6;
+          }
+        },
+        next(){
+          if(this.active >= this.images.length-1) {
+            this.active = 0;
+          } else {
+            this.active ++;
+          }
+        }
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>

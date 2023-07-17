@@ -1,0 +1,29 @@
+#app, body{
+  width: 40rem;
+  height: 40rem;
+}
+
+.square{
+  background: black;
+  width: 50%;
+  height: 50%;
+}
+
+.active-enter {
+  opacity: 0;
+}
+.active-enter-to {
+  opacity: 1;
+}
+.active-enter-active {
+  transition: opacity 1s;
+}
+.active-leave {
+  opacity: 1;
+}
+.active-leave-to {
+  opacity: 0;
+}
+.active-leave-active {
+  transition: opacity 1s;
+}

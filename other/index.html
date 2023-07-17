@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <transition name="active">
+      <div class="square" v-show="ok"></div>
+    </transition>
+
+    <Transition name="active">
+      <div v-if="ok">toggled content</div>
+    </Transition>
+    <div @click="ok = !ok">OK-button</div>
+  </div>
+  <script>
+    let { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          ok: true
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
