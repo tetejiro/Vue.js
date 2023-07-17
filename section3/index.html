@@ -7,13 +7,16 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
   <link rel="stylesheet" href="index.css">
   <style>
+    [v-cloak] {
+      display: none;
+    }
     .error {
       color: red;
     }
   </style>
 </head>
 <body>
-  <div id="app">
+  <div id="app" v-cloak>
     <p v-if="errors.length">
       <ul>
         <li class="error" v-for="error in errors">{{ error }}</li>
@@ -21,7 +24,9 @@
     </p>
 
     <form @submit.prevent="validate">
-      name:<input type="text" v-model="contact.yourName"><br>
+      <div v-show="hasError.yourName" class=error>名前が20文字以上はだめ</div>
+      name:<input type="text" v-model="yourName"><br>
+      <div :class="{error: hasError.yourName}">length=> {{ contact.yourName.length }}</div>
       tel:<input type="tel" v-model.number="contact.tel"><br>
       mail:<input type="email" v-model.lazy="contact.email"><br>
       gen:<input type="radio" v-model="contact.gender" value="男性">男性
@@ -62,18 +67,35 @@
           attracts: [],
           caution: false
         },
-        errors: []
+        errors: [],
+        hasError: {
+          yourName: false
+        }
       }
     },
     methods: {
       validate() {
         this.errors = [];
         if(!this.contact.caution) {
-          console.log('aaaaaaaaaaaa');
           this.errors.push('同意してない');
         }
         if(!this.contact.gender) {
           this.errors.push('gender未選択');
+        }
+      }
+    },
+    computed: {
+      yourName: {
+        get(){
+          return this.contact.yourName;
+        },
+        set(val){
+          if(val.length > 20) {
+            this.hasError.yourName = true;
+          } else {
+            this.hasError.yourName = false;
+            this.contact.yourName = val;
+          }
         }
       }
     }
