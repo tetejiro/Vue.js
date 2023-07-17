@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<body>
+  <div id="app">
+    <div id="example-3">
+      <button @click="show = !show">
+        Toggle render
+      </button>
+      <Transition
+          enter-active-class="animate__animated animate__flash"
+          leave-active-class="animate__animated animate__bounce">
+        <p v-if="show">toggled content</p>
+      </Transition>
+    </div>
+  </div>
+</body>
+
+<script>
+  let app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        show: false
+      }
+    }
+  });
+</script>
+</html>
