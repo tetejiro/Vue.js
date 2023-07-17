@@ -5,25 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    name:<input type="text" name="name" :value="test"
-                @input = "test = $event.target.value"><br>
-    <input @input = "checkEvent">
+    <p v-if="errors.length">
+      <ul>
+        <li class="error" v-for="error in errors">{{ error }}</li>
+      </ul>
+    </p>
+
+    <form @submit.prevent="validate">
+      name:<input type="text" v-model="contact.yourName"><br>
+      tel:<input type="tel" v-model.number="contact.tel"><br>
+      mail:<input type="email" v-model.lazy="contact.email"><br>
+      gen:<input type="radio" v-model="contact.gender" value="男性">男性
+          <input type="radio" v-model="contact.gender" value="女性">女性
+          <input type="radio" v-model="contact.gender" value="その他">その他<br>
+      age:
+        <select v-model="contact.age">
+          <option disabled>年齢</option>
+          <option>10代</option>
+          <option>20代</option>
+          <option>30代</option>
+          <option>40代</option>
+        </select><br>
+      mes:<textarea v-model="contact.message"></textarea><br>
+      理由:
+        <label><input type="checkbox" v-model="contact.attracts" value="教えない">教えない</label>
+        <label><input type="checkbox" v-model="contact.attracts" value="知らない">知らない</label>
+        <label><input type="checkbox" v-model="contact.attracts" value="なんとなく">なんとなく</label><br>
+      同意する <input type="checkbox" v-model="contact.caution"><br>
+
+      <input type="submit" value="送信">
+    </form>
   </div>
+
 </body>
 <script>
   let app = new Vue({
     el: '#app',
     data() {
       return {
-        test: ''
+        contact: {
+          yourName: '',
+          tel: '',
+          email: '',
+          gender: '',
+          age: '',
+          message: '',
+          attracts: [],
+          caution: false
+        },
+        errors: []
       }
     },
     methods: {
-      checkEvent(e) {
-        console.log(e);
+      validate() {
+        this.errors = [];
+        if(!this.contact.caution) {
+          console.log('aaaaaaaaaaaa');
+          this.errors.push('同意してない');
+        }
+        if(!this.contact.gender) {
+          this.errors.push('gender未選択');
+        }
       }
     }
   })
