@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    .parent {
+      width: 800px;
+      margin: 0 auto;
+      border: 1px red solid;
+    }
+    .child {
+      width: 30%;
+      margin: 0 auto;
+      border: 1px blue solid;
+    }
+    .grand_child {
+      width: 20%;
+      margin: 0 auto;
+      border: 1px solid green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="parent">
+    <my-com class="child">
+      <template v-slot:header>hhhhhhhhhh</template>
+      ---------main---------
+      <template #footer>aaaaaaaaaaa</template>
+      ---------main2--------
+    </my-com>
+  </div>
+</body>
+
+<script>
+  let myCom = {
+    template:
+      `<div>
+        <slot name="header">header</slot>
+        <slot>main</slot>
+        <slot name="footer">footer</slot>
+      </div>`
+  };
+
+  let app = new Vue({
+    el: '#app',
+    components: { myCom }
+  });
+</script>
+</html>
