@@ -22,7 +22,7 @@
 <body>
   <div id="app" class="parent">
     <custom-input :val="parentValue"
-                  @input="parentValue = $event"
+                  @custom-input="parentValue = $event"
                   class="child">
     </custom-input>
     {{ parentValue }}
@@ -35,10 +35,10 @@
       val: String
     },
     template:
-      `<div>child <input :value="val" @input="childEvent"></div>`,
+      `<div>child <input @input="childEvent"></div>`,
     methods: {
       childEvent(e) {
-        this.$emit('input', e.target.value);
+        this.$emit('custom-input', e.target.value);
       }
     }
   };
