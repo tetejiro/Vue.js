@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="red-b">
+    <div class="border__blud">SCSS</div>
     TestComponent
     {{ testData }}
   </div>
@@ -17,5 +18,4 @@ export default {
 </script>
 
 <style>
-
 </style>
