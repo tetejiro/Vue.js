@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { ref, reactive, toRefs, computed, watch, watchEffect } from 'vue'
+import { ref, reactive, toRefs, computed, watch, watchEffect, onMounted } from 'vue'
 
 export default {
   setup() {
@@ -62,6 +62,11 @@ export default {
       console.log(`watchEffect=> ${searchEffect.value}`)
     })
 
+    //setup内のmounted
+    onMounted(() => {
+      console.log('onMounted');
+    })
+
     return {
       nameRef,
       book,
@@ -77,6 +82,7 @@ export default {
     console.log('created');
     console.log(this);
   },
+  // setup外のmounted
   mounted() {
     console.log('mounted');
   }
