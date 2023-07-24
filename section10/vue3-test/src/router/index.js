@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MaybeChildren from '@/views/MaybeChildren'
 import TeleportTest from '@/views/TeleportTest'
+import CompositionTest from '@/views/CompositionTest'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/teleport',
     name: 'TeleportTest',
     component: TeleportTest
+  },
+  {
+    path: '/Composition',
+    name: 'CompositionTest',
+    component: CompositionTest
   },
   {
     path: '/about',
