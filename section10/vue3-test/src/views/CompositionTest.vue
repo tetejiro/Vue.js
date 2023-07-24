@@ -5,10 +5,12 @@
   <div>{{ nameRef }}</div>
   <div>{{ book }}</div>
   <div>{{ titleRef }}</div>
+  <button @click="btnClick">click---</button>
+  <div>{{ totalPrice }}</div>
 </template>
 
 <script>
-import { ref, reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs, computed } from 'vue'
 
 export default {
   setup() {
@@ -24,12 +26,29 @@ export default {
       authorRef: 'authorRef'
     });
 
+    const btnClick = e => {
+      console.log(book.title);
+      console.log(e.currentTarget);
+    }
+
+    let item = reactive({
+      price: 100,
+      number: 1
+    });
+
+    const totalPrice = computed(() => {
+      return item.price * 100;
+    })
+
     console.log(nameRef.value);
 
     return {
       nameRef,
       book,
-      ...toRefs(booktoRef)
+      ...toRefs(booktoRef),
+      btnClick,
+      item,
+      totalPrice
     }
   },
   created() {
