@@ -3,20 +3,33 @@
     CompositionTest
   </div>
   <div>{{ nameRef }}</div>
+  <div>{{ book }}</div>
+  <div>{{ titleRef }}</div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, reactive, toRefs } from 'vue'
 
 export default {
   setup() {
     console.log('setUp');
     console.log(this);
     const nameRef = ref('nameRef');
+    const book = reactive({
+      title: 'title',
+      author: 'author'
+    });
+    const booktoRef = reactive({
+      titleRef: 'titleRef',
+      authorRef: 'authorRef'
+    });
+
     console.log(nameRef.value);
 
     return {
-      nameRef
+      nameRef,
+      book,
+      ...toRefs(booktoRef)
     }
   },
   created() {
