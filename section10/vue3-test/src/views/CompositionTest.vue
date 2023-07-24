@@ -7,17 +7,23 @@
   <div>{{ titleRef }}</div>
   <button @click="btnClick">click---</button>
   <div>{{ totalPrice }}</div>
-  <div><input type="text" v-model="search"></div>
+  <div>watch<input type="text" v-model="search"></div>
+  <div>watchEffect<input type="text" v-model="searchEffect"></div>
 </template>
 
 <script>
-import { ref, reactive, toRefs, computed, watch } from 'vue'
+import { ref, reactive, toRefs, computed, watch, watchEffect } from 'vue'
 
 export default {
   setup() {
     console.log('setUp');
     console.log(this);
+
+    // ref
     const nameRef = ref('nameRef');
+    console.log(nameRef.value);
+
+    // reactive
     const book = reactive({
       title: 'title',
       author: 'author'
@@ -37,17 +43,23 @@ export default {
       number: 1
     });
 
+    // computed
     const totalPrice = computed(() => {
       return item.price * 100;
     })
 
-    console.log(nameRef.value);
-
+    // watch
     const search = ref('searchのvalue')
     watch(search, (newVal, preVal) => {
       console.log(`watch: ${search.value}`);
       console.log(`newVal: ${newVal}`);
       console.log(`preVal: ${preVal}`);
+    })
+
+    // watchEffect
+    const searchEffect = ref('')
+    watchEffect(() => {
+      console.log(`watchEffect=> ${searchEffect.value}`)
     })
 
     return {
@@ -57,7 +69,8 @@ export default {
       btnClick,
       item,
       totalPrice,
-      search
+      search,
+      searchEffect
     }
   },
   created() {
