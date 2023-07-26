@@ -9,6 +9,8 @@
       {{ setupBoo.title }}
     </li>
   </ul>
+
+  <button @click="emitTest">PropsEmitTest-button</button>
 </template>
 
 <script>
@@ -17,9 +19,17 @@ export default {
     setupBook: Array,
     dataBooks: Array
   },
-  setup(props) {
+  setup(props, context) {
     console.log(props.setupBook[0].title);
     console.log(props.dataBooks[0].title);
+
+    const emitTest = () => {
+      context.emit('custom-event', 'aaaaa');
+    }
+
+    return {
+      emitTest
+    }
   }
 }
 </script>

@@ -7,7 +7,11 @@
     <router-link to="/composition">composition</router-link> |
     <router-link to="/propsEmit">propsEmit</router-link>
   </nav>
-  <router-view :setupBook="setupBook" :dataBooks="dataBooks"></router-view>
+  <router-view
+    :setupBook="setupBook"
+    :dataBooks="dataBooks"
+    @custom-event="customEvent">
+    </router-view>
 </template>
 
 <script>
@@ -42,6 +46,11 @@
             author: 'bookauthor2'
           }
         ]
+      }
+    },
+    methods: {
+      customEvent(str) {
+        console.log(str);
       }
     },
     provide() {
