@@ -14,23 +14,8 @@
 </template>
 
 <script>
-  import { computed, reactive } from 'vue';
-
-  const userCounter = item => {
-    const increment = () => {
-      item.amount++;
-    }
-
-    const decrement = () => {
-      item.amount--;
-    }
-
-    const totalPrice = computed(() => {
-      return item.price * item.amount;
-    })
-
-    return { increment, decrement, totalPrice };
-  }
+  import { reactive } from 'vue';
+  import useCounter from '@/composables/useCounter'
 
   export default {
     setup() {
@@ -40,7 +25,7 @@
         amount: 0
       })
 
-      const { increment, decrement, totalPrice } = userCounter(item)
+      const { increment, decrement, totalPrice } = useCounter(item)
 
       return { item, increment, decrement, totalPrice }
     }
