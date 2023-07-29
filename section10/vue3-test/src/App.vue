@@ -7,7 +7,8 @@
     <router-link to="/composition">composition</router-link> |
     <router-link to="/propsEmit">propsEmit</router-link> |
     <router-link to="/function">function</router-link> |
-    <router-link to="/router">router</router-link>
+    <router-link to="/router">router</router-link> |
+    <router-link to="/vueX">vueX</router-link>
   </nav>
   <router-view
     :setupBook="setupBook"
