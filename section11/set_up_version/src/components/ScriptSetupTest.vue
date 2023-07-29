@@ -10,9 +10,14 @@
   const decrement = () => {
     count.value--;
   }
+
+  const props = defineProps({
+    title: String
+  })
 </script>
 
 <template>
+  <div>{{ props.title }}</div>
   <div>
     <h1>{{ count }}</h1>
     <button @click="increment">+</button>
@@ -20,6 +25,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style>
 
 </style>

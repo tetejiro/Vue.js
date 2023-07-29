@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <ScriptSetupTest></ScriptSetupTest>
+  <ScriptSetupTest title="親から子へのpropsでの受け渡し"></ScriptSetupTest>
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
