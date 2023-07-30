@@ -1,6 +1,9 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <ScriptSetupTest title="親から子へのpropsでの受け渡し"></ScriptSetupTest>
+  <ScriptSetupTest
+    title="親から子へのpropsでの受け渡し"
+    @custom-event="parentMethod">
+  </ScriptSetupTest>
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
@@ -13,6 +16,11 @@ export default {
   components: {
     HelloWorld,
     ScriptSetupTest
+  },
+  methods: {
+    parentMethod(e) {
+      console.log('aaaaaaaaaaaaa', e);
+    }
   }
 }
 </script>
